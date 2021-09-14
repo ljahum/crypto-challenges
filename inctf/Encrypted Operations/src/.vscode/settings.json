@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "*.sage": "python",
+        "initializer_list": "cpp",
+        "random": "cpp"
+    }
+}

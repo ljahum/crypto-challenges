@@ -1,0 +1,4 @@
+题目名称：simplecomputer
+题目内容：simplecomputer
+题目分值：200.0
+题目难度：中等

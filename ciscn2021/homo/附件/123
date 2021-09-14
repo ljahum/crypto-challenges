@@ -1,0 +1,4 @@
+random.seed(os.urandom(32))
+
+for i in range(512):
+    number = random.getrandbits(64)

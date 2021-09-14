@@ -1,0 +1,4 @@
+题目名称：ReedSolomen
+题目内容：ReedSolomen in QRcode
+题目分值：500.0
+题目难度：困难
