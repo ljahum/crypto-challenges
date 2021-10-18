@@ -1,0 +1,11 @@
+abusedkey
+A weak key is used in two insecure cryptographic protocol instance.
+
+http://39.105.181.182:30000/
+http://39.105.115.244:30000/
+
+题目附件： 点击下载附件 1
+flag: 
+ 提交
+
+Document revision 2: https://bytectf.feishu.cn/file/boxcnqmxm83Ph2vI0E0T2e9683d , fixes typos and clarifies some ambiguity.
