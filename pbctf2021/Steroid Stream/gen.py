@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import random
-from flag import flag
+# from flag import flag
 
 def keygen(ln):
     # Generate a linearly independent key
@@ -73,12 +73,12 @@ def bits_to_bytes(inp):
         res.append(int(''.join(map(str, inp[i:i+8])), 2))
     return bytes(res)
 
-flag = bytes_to_bits(flag)
+# flag = bytes_to_bits(flag)
 
-key = keygen(len(flag))
-keystream, public = gen_keystream(key)
-assert keystream == recover_keystream(key, public)
-enc = bits_to_bytes(xor(flag, keystream))
+# key = keygen(len(flag))
+# keystream, public = gen_keystream(key)
+# assert keystream == recover_keystream(key, public)
+# enc = bits_to_bytes(xor(flag, keystream))
 
-print(enc.hex())
-print(public)
+# print(enc.hex())
+# print(public)

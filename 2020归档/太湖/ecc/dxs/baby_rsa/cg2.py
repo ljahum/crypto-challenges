@@ -1,0 +1,13 @@
+import sympy
+from Crypto.Util.number import *
+
+a1 = 990857225811271951650037350996527088681062266094645248728781
+e = 2
+m = 1098189282820284236635242536224646233135891114012555547570821
+a = pow(a1, e, m)
+print(a)
+
+n = sympy.nthroot_mod(a, e, m)
+print(n)
+
+print(pow(n,e,m))

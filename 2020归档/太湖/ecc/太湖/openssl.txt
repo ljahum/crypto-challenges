@@ -1,0 +1,7 @@
+openssl ec -in .\p384-key.pem -text
+
+openssl asn1parse -i -in .\p384-key.pem
+
+openssl ecparam -out BJ2020.key -name prime256v1 -genkey
+
+openssl ecparam -list_curves

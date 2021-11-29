@@ -1,5 +1,4 @@
 from Crypto.Util.number import *
-from Crypto.Util.strxor import *
 from data import *
 
 
@@ -53,7 +52,4 @@ def recover_keystream(key, public):
 
 stream = recover_keystream(keys, pub)
 print(strxor(long_to_bytes(int(stream, 2)), long_to_bytes(cipher)))
-# b'pbctf{super_duper_easy_brute_forcing_actually_this_one_was_made_by_mistake}'
-
-
 # pbctf{super_duper_easy_brute_forcing_actually_this_one_was_made_by_mistake}

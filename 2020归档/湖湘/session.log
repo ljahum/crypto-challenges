@@ -1,0 +1,10 @@
+11/01/20 18:00:03 v1.34.5 @ LAPTOP-3PRLLIJT, System/Build Info: 
+Using GMP-ECM 6.3, Powered by GMP 5.1.1
+cached 78498 primes. pmax = 999983
+detected Intel(R) Core(TM) i7-9750H CPU @ 2.60GHz
+detected L1 = 32768 bytes, L2 = 12582912 bytes, CL = 64 bytes
+measured cpu frequency ~= 2590.430390
+using 20 random witnesses for Rabin-Miller PRP checks
+
+11/01/20 18:00:03 v1.34.5 @ LAPTOP-3PRLLIJT, New random seeds: 629017305, 2896914844
+

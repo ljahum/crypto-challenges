@@ -92,16 +92,16 @@ class Task(socketserver.BaseRequestHandler):
 
             self.send(BANNER)
 
-            if not self.proof_of_work():
-                self.send(b'\nWrong!')
-                self.request.close()
-                return
+            # if not self.proof_of_work():
+            #     self.send(b'\nWrong!')
+            #     self.request.close()
+            #     return
 
             self.send(b"It's just a decryption system. And I heard that only the Bytedancer can get secret.")
 
             aes = AES_CFB()
 
-            signal.alarm(300)
+            # signal.alarm(300)
 
             for i in range(52):
                 cipher_hex = self.recv(prompt=b'Please enter your cipher in hex > ')
@@ -142,7 +142,7 @@ class ForkedServer(socketserver.ForkingMixIn, socketserver.TCPServer):
 
 
 if __name__ == "__main__":
-    HOST, PORT = '0.0.0.0', 30000
+    HOST, PORT = '0.0.0.0', 30002
     print(HOST, PORT)
     server = ForkedServer((HOST, PORT), Task)
     server.allow_reuse_address = True
