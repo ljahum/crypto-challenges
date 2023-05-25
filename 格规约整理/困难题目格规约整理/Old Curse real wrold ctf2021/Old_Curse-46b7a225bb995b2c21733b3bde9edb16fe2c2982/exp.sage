@@ -1,0 +1,117 @@
+# display matrix picture with 0 and X
+# references: https://github.com/mimoo/RSA-and-LLL-attacks/blob/master/boneh_durfee.sage
+def matrix_overview(BB):
+    for ii in range(BB.dimensions()[0]):
+        a = ('%02d ' % ii)
+        for jj in range(BB.dimensions()[1]):
+            if BB[ii,jj] == 0:
+                a += ' '
+            else:
+                a += 'X'
+            if BB.dimensions()[0] < 60:
+                a += ' '
+        print(a)
+    
+def lattice_attack(pol, e, X, Y, Z, mm = 2, tt = 1):
+        
+    polys = []
+    
+    for kk in range(mm+1):
+        for i1 in range(kk, mm+1):
+            i2 = kk
+            i3 = mm - i1
+            poly = x^(i1 - kk) * z^i3 * pol ^ kk * e ^ (mm - kk)
+            polys.append(poly)
+
+    for kk in range(mm+1):
+        i1 = kk
+        for i2 in range(kk + 1, i1 + tt + 1):
+            i3 = mm - i1
+            poly = y^(i2 - kk) * z^i3 * pol ^ kk * e ^ (mm - kk)
+            polys.append(poly)
+
+    polys = sorted(polys)
+    monomials = []
+    for poly in polys:
+        monomials += poly.monomials()
+    monomials = sorted(set(monomials))
+    dims1 = len(polys)
+    dims2 = len(monomials)
+    M = matrix(QQ, dims1, dims2)
+
+    for ii in range(dims1):
+        M[ii, 0] = polys[ii](0, 0, 0)
+        for jj in range(dims2):
+            if monomials[jj] in polys[ii].monomials():
+                M[ii, jj] = polys[ii](x * X, y * Y, z * Z).monomial_coefficient(monomials[jj])
+                
+    matrix_overview(M)
+    print()
+    print('=' * 128)
+    print()
+    B = M.LLL()
+    print('LLL done')
+    matrix_overview(B)
+    H = [(i, 0) for i in range(dims1)]
+    H = dict(H)
+    for j in range(dims2):
+        for i in range(dims1):
+            H[i] += PR((monomials[j] * B[i, j]) // monomials[j](X, Y, Z))
+
+    H = list(H.values())
+    PQ = PolynomialRing(QQ, 'xq, yq, zq')
+    xq, yq, zq = PQ.gens()
+    for i in range(dims1):
+        H[i] = PQ(H[i])
+
+    I = Ideal(*H[1:4])
+    xv,yv,zv = var("xq,yq,zq")
+    input()
+    g = I.groebner_basis('giac')[::-1]
+    input()
+    print(solve([g_i(xv,yv,zv) for g_i in g],xv,yv,zv))
+    '''
+    [xq == r84, yq == r85, zq == r84*r85 - 4298479533919222051278424008577823787364263332580438512213525069157290784423146604914451469507153913893839652272765256923591944212821123404914813182473920184304071161320177981959839398079746158378586359732136948418875022137978872858278664265291581144582621441419/3602343035298837553927542062227*r84],
+    [xq == r86, yq == (4298479533919222051278424008577823787364263332580438512213525069157290784423146604914451469507153913893839652272765256923591944212821123404914813182473920184304071161320177981959839398079746158378586359732136948418875022137978872858278664265291581144582621441419/3602343035298837553927542062227), zq == 0],
+    [xq == 0, yq == r87, zq == 0],
+    we get xq = 3602343035298837553927542062227
+        yq = 4298479533919222051278424008577823787364263332580438512213525069157290784423146604914451469507153913893839652272765256923591944212821123404914813182473920184304071161320177981959839398079746158378586359732136948418875022137978872858278664265291581144582621441419//3602343035298837553927542062227 + 1
+        zq = xq*yq - 4298479533919222051278424008577823787364263332580438512213525069157290784423146604914451469507153913893839652272765256923591944212821123404914813182473920184304071161320177981959839398079746158378586359732136948418875022137978872858278664265291581144582621441419
+        assert (xq*yq - N*xq - zq) % e == 0
+    '''
+    xq = 3602343035298837553927542062227
+    yq = 4298479533919222051278424008577823787364263332580438512213525069157290784423146604914451469507153913893839652272765256923591944212821123404914813182473920184304071161320177981959839398079746158378586359732136948418875022137978872858278664265291581144582621441419//3602343035298837553927542062227 + 1
+    zq = xq*yq - 4298479533919222051278424008577823787364263332580438512213525069157290784423146604914451469507153913893839652272765256923591944212821123404914813182473920184304071161320177981959839398079746158378586359732136948418875022137978872858278664265291581144582621441419
+    assert (xq*yq - N*xq - zq) % e == 0
+    return xq,yq,zq
+
+
+N = 80330528881183983072964816732300543404856810562533626369319300810697262966387144944887576330528743612839739692299784591097332512948890518183519167192046959230085412831864255497489112175176914874596237618253755256608956517757030073479666104923402013469283716999320744856718736837534911809839541660207743594867
+e = 78452652317506438607956636739779994986676384637399723342738736371812868831141251164966879331214017314432739387076791674001159059604426825547538902010774841189596518785149221523738464397224366361779781148300651051284198636694801404816891957209985325619623109930150535820404950711233032177848101830061155574970
+
+import math
+from Crypto.Util.number import *
+def bound_check(alpha, beta, gamma, delta):
+    cond = 7.0/6 + 1.0/3*alpha - gamma - 1.0/3 * float(sqrt((2*alpha + 1)*(2*alpha + 6*beta - 6*gamma +1))) > delta
+    return cond
+
+PR = PolynomialRing(ZZ, 'x, y, z')
+x, y, z = PR.gens()
+
+alpha = 0.25
+gamma = 0.15
+delta = 0.15
+beta = math.log2(e) / math.log2(N)
+
+X = math.floor(4*N^(beta + delta - 1))
+Y = math.floor(3*sqrt(2)*N^(0.5 + alpha))
+Z = math.floor(N^gamma)
+
+# Target polynomial
+pol = x*y - N*x - z
+
+mm = 3
+t0 = (1  -  2*alpha - 2*delta -  2*gamma) / (2*(1 + 2*alpha))
+tt = 1
+print(f" bound check : {bound_check(alpha, beta, gamma, delta)} if failed, does not matter")
+x0, y0, z0 = lattice_attack(pol, e, X, Y, Z, mm, tt)
