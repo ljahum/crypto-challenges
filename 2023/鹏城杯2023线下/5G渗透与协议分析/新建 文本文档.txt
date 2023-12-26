@@ -1,0 +1,17 @@
+PRI * HTTP/2.0
+
+SM
+
+................................................d.......................................:........A........Aq....b...V.....b..;S9jI.4..#_..u.b
+&=LtA..
+.....g......{"servingNetworkName":"5G:mnc001.mcc460.3gppnetwork.org","supiOrSuci":"suci-0-460-01-0-0-0-1357924680"}...........N......H..._..u.b
+&=L35u......W.
+.340....).....\@\@\ ....v.U.jgc.X.....Z.b
+&=H`.....?..T......{"authType":"5G_AKA","_links":{"5g-aka":{"href":"http://200.20.20.10:80/nausf-auth/v1/ue-authentications/000000001/5g-aka-confirmation"}},"5gAuthData":{"rand":"8a4b2404fefa747f8dec5957c3a61e50","autn":"a75bc492d16d8000ba4e18370efc7f56","hxresStar":"d36c3fd5173e7a818ef324cfc05c357a"},"servingNetworkName":"5G:mnc001.mcc460.3gppnetwork.org"}...........=......B.PUT....b.d.kJJX..
+J..N...-...q.1af2.`.c...L.35u.2..G..
+.293..%......{"amfInstanceId":"1da28ef8-dab5-4948-ba04-a80cb6e36d47","deregCallbackUri":"http://200.20.20.5:80/nudm-uecm/dereg/v1/ueId/registrations/amf-3gpp-access/1","ratType":"NR","pei":"imeisv-8611111111111111","initialRegistrationInd":true,"guami":{"plmnId":{"mcc":"460","mnc":"01"},"amfId":"010041"}}..................._..u.b
+&=LtA..
+.293..%......{"amfInstanceId":"1da28ef8-dab5-4948-ba04-a80cb6e36d47","deregCallbackUri":"http://200.20.20.5:80/nudm-uecm/dereg/v1/ueId/registrations/amf-3gpp-access/1","ratType":"NR","pei":"imeisv-8611111111111111","initialRegistrationInd":true,"guami":{"plmnId":{"mcc":"460","mnc":"01"},"amfId":"010041"}}...........0...........b.d.dIK....A.i..!e._.N<..%+"..K
+ZLz...
+.364..l......{"callbackReference":"http://200.20.20.5:80/nudm-sdm/e1-callbackreference/v1/imsi-460011357924680/sdm-subscriptions","implicitUnsubscribe":true,"monitoredResourceUris":["http://200.20.20.10:80/nudm-sdm/v2/imsi-460011357924680/am-data","http://200.20.20.10:80/nudm-sdm/v2/imsi-460011357924680/smf-select-data"],"nfInstanceId":"1da28ef8-dab5-4948-ba04-a80cb6e36d47"}...........E.........
+.364....).....\@\@\ .....)Y.R.p.jPe.p..Ym......IJ..4..V...0........l......{"callbackReference":"http://200.20.20.5:80/nudm-sdm/e1-callbackreference/v1/imsi-460011357924680/sdm-subscriptions","implicitUnsubscribe":true,"monitoredResourceUris":["http://200.20.20.10:80/nudm-sdm/v2/imsi-460011357924680/am-data","http://200.20.20.10:80/nudm-sdm/v2/imsi-460011357924680/smf-select-data"],"nfInstanceId":"1da28ef8-dab5-4948-ba04-a80cb6e36d47"}.........

@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "*.sage": "python",
+        "*.wxml": "html",
+        "*.toml": "toml",
+        "stdlib.h": "c"
+    }
+}
