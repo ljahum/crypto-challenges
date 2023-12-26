@@ -12,19 +12,17 @@ pd = iroot(N,2)[0]
 p1 = pd -10000
 
 for i in range(1000):
-    p1 = next_prime(p1)
-    p2 = next_prime(p1)
-    tmp = (p1*p2)>>520
-    
-    
-    if(tmp == n):
-        print(tmp - n)
-        print(i)
-        n1 = p1*p2
-        phi = (p1-1)*(p2-1)
-        d = inverse(e,phi)        
-        m1 = pow(c,d,n1)
-        print(long_to_bytes(m1))
+    p1 = next_prime(p1)
+    p2 = next_prime(p1)
+    tmp = (p1*p2)>>520
+    if(tmp == n):
+        print(tmp - n)
+        print(i)
+        n1 = p1*p2
+        phi = (p1-1)*(p2-1)
+        d = inverse(e,phi)  
+        m1 = pow(c,d,n1)
+        print(long_to_bytes(m1))
 
-        
-        
+
+
